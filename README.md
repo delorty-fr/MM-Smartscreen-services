@@ -139,6 +139,26 @@ npm run test:e2e      # Run end-to-end tests
 npm run build         # Build for production
 ```
 
+## Enhancement Ideas
+
+### Tractive Service Future Enhancements
+
+Potential features and improvements for future versions:
+
+- **Bluetooth Integration**
+  - Direct Bluetooth connection to Tractive devices to send commands (ligh/sound) even if device is in power saving zone (see https://github.com/drrobotk/PyTractive)
+
+## Credits
+
+### Tractive Service
+This Tractive service implementation is built upon and inspired by the following projects:
+
+- [**dominique-boerner/unofficial-tractive-rest-api**](https://github.com/dominique-boerner/unofficial-tractive-rest-api) - Unofficial Tractive REST API
+- [**FAXES/tractive**](https://github.com/FAXES/tractive) - Tractive API wrapper
+- [**drrobotk/PyTractive**](https://github.com/drrobotk/PyTractive) - Python Tractive API client
+
+We extend our gratitude to these projects for their contributions to understanding and working with the Tractive API.
+
 ## License
 
 This project is licensed under the GNU General Public License v2.0. See [LICENSE](LICENSE) for details.
