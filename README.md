@@ -150,6 +150,13 @@ Potential features and improvements for future versions:
 
 ## Credits
 
+### Sonos Service
+This Sonos service is based on the original project:
+
+- [**jishi/node-sonos-http-api**](https://github.com/jishi/node-sonos-http-api) - Node.js HTTP API for Sonos
+
+We extend our gratitude for this excellent project that enables HTTP-based control of Sonos systems.
+
 ### Tractive Service
 This Tractive service implementation is built upon and inspired by the following projects:
 
