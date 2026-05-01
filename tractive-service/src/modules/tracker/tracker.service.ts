@@ -50,6 +50,7 @@ export class TrackerService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e: any) {
       this.logger.error(`Error while getting all trackers: ${e?.message}`);
@@ -77,6 +78,7 @@ export class TrackerService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e: any) {
       this.logger.error(`Error while getting tracker: ${e?.message}`);
@@ -126,6 +128,8 @@ export class TrackerService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
 
       // The API returns data in segments, extract the first segment
       if (Array.isArray(response.data) && response.data.length > 0) {

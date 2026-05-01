@@ -82,6 +82,8 @@ export class LocationService {
         },
       });
 
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
+
       // we cache the last location
       this.lastLocationCache = response.data;
 

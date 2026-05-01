@@ -122,6 +122,8 @@ export class HardwareService {
         },
       });
 
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
+
       // we cache the last report
       this.lastReportCache = response.data;
 

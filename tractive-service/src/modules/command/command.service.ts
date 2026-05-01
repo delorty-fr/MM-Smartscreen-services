@@ -102,6 +102,7 @@ export class CommandService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] POST', url, response.data);
       return response.data;
     } catch (e: any) {
       this.logger.error(`Error while sending command ${command}: ${e?.message}`);

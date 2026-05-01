@@ -8,6 +8,8 @@ import { PetModule } from './modules/pet/pet.module';
 import { CommandModule } from './modules/command/command.module';
 import { TrackerModule } from './modules/tracker/tracker.module';
 import { RootController } from './root.controller';
+import { StubModeService } from './config/stub-mode.service';
+import { StubDataProvider } from './config/stub-data-provider';
 
 @Module({
   imports: [
@@ -21,5 +23,7 @@ import { RootController } from './root.controller';
     ConfigModule.forRoot(),
   ],
   controllers: [RootController],
+  providers: [StubModeService, StubDataProvider],
+  exports: [StubModeService, StubDataProvider],
 })
 export class AppModule {}

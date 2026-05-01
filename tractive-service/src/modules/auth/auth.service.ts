@@ -53,6 +53,8 @@ export class AuthService {
         },
       });
 
+      console.log('[TRACTIVE API RESPONSE] POST', url, response.data);
+
       // we cache the last authentication key
       this.authenticationStore.lastAuthenticationCache = response.data;
 

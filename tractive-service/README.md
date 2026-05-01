@@ -35,6 +35,23 @@ $ npm run start:dev
 $ npm run start:prod
 ```
 
+### Stub Mode (Development)
+
+You can run the app in **stub mode** to test without connecting to the actual Tractive API. This returns mock data for all endpoints except command endpoints.
+
+```bash
+# Start in stub mode
+STUB_MODE=true npm run start
+```
+
+With stub mode enabled:
+- ✅ No authentication required
+- ✅ All endpoints (except `/command/`) return mock data
+- ✅ Command endpoints (`/command/*`) still require real credentials and will fail
+- ✅ Perfect for frontend development and testing
+
+See [STUB_MODE.md](STUB_MODE.md) for detailed documentation and examples.
+
 ## Test
 
 ```bash

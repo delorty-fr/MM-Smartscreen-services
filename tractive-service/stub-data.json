@@ -1,0 +1,214 @@
+{
+  "auth": {
+    "user_id": "00000000000000000000000",
+    "email": "stub@example.com",
+    "token": "00000000000000000000000",
+    "user": {
+      "id": "00000000000000000000000",
+      "email": "stub@example.com",
+      "first_name": "Stub",
+      "last_name": "User"
+    }
+  },
+  "account": {
+    "id": "00000000000000000000000",
+    "email": "stub@example.com",
+    "name": "Stub Account",
+    "first_name": "Stub",
+    "last_name": "User",
+    "country": "US",
+    "timezone": "America/New_York",
+    "language": "en",
+    "is_premium": true
+  },
+  "subscription": {
+    "id": "00000000000000000000000",
+    "user_id": "00000000000000000000000",
+    "plan_name": "Premium",
+    "status": "ACTIVE",
+    "price": 9.99,
+    "currency": "USD",
+    "auto_renewal": true
+  },
+  "pet": {
+    "_id": "00000000000000000000000",
+    "_version": "00000000000000000000000",
+    "leaderboard_opt_out": false,
+    "device_id": "000000",
+    "_type": "pet",
+    "details": {
+      "_id": "00000000000000000000000",
+      "_version": "00000000000000000000000",
+      "name": "Snowball",
+      "pet_type": "DOG",
+      "breed_ids": ["122"],
+      "gender": "",
+      "birthday": 1666732400,
+      "height": 0.59,
+      "length": null,
+      "weight": 60000,
+      "chip_id": null,
+      "neutered": true,
+      "personality": [],
+      "lost_or_dead": null,
+      "lim": null,
+      "ribcage": null,
+      "weight_is_default": null,
+      "height_is_default": null,
+      "birthday_is_default": null,
+      "breed_is_default": null,
+      "instagram_username": null,
+      "profile_picture_id": null,
+      "cover_picture_id": null,
+      "gallery_picture_ids": [],
+      "activity_settings": {
+        "_id": "00000000000000000000000",
+        "_version": "00000000000000000000000",
+        "daily_goal": 1000,
+        "daily_distance_goal": 0,
+        "daily_active_minutes_goal": 140,
+        "activity_category_thresholds_override": null,
+        "daily_active_minutes_goal_is_default": true,
+        "_type": "activity_setting"
+      },
+      "_type": "pet_detail",
+      "read_only": false
+    },
+    "read_only": false,
+    "created_at": 1764181492,
+    "home_location": [40.0, -70.0]
+  },
+  "tracker": {
+    "_id": "00000000000000000000000",
+    "_version": "00000000000000000000000",
+    "hw_id": "00000000000000000000000",
+    "model_number": "TG6A",
+    "hw_edition": "BLACK-LINES",
+    "bluetooth_mac": null,
+    "geofence_sensitivity": "HIGH",
+    "read_only": false,
+    "self_test_available": false,
+    "capabilities": [
+      "LT",
+      "BUZZER",
+      "LT_BLE",
+      "LED_BLE",
+      "BUZZER_BLE",
+      "HW_REPORTS_BLE",
+      "WIFI_SCAN_REPORTS_BLE",
+      "LED",
+      "ACTIVITY_TRACKING",
+      "WIFI_ZONE",
+      "SLEEP_TRACKING",
+      "BARK_DETECTION",
+      "VITALITY_TRACKING",
+      "LOW_POWER_MODE",
+      "SCRATCH_DETECTION"
+    ],
+    "supported_geofence_types": ["CIRCLE", "RECTANGLE", "POLYGON"],
+    "fw_version": "00000000000000000000000",
+    "battery_save_mode": false,
+    "state": "OPERATIONAL",
+    "state_reason": null,
+    "charging_state": "NOT_CHARGING",
+    "battery_state": "REGULAR",
+    "power_saving_zone_id": null,
+    "prioritized_zone_id": "000000000000000000000",
+    "prioritized_zone_type": "POWER_SAVING",
+    "_type": "tracker"
+  },
+  "hardware": {
+    "battery_level": 52,
+    "temperature_state": null,
+    "clip_mounted_state": null,
+    "_id": "00000000000000000000000",
+    "_type": "device_hw_report",
+    "_version": "00000000000000000000000",
+    "report_id": "00000000000000000000000",
+    "power_saving_zone_id": null,
+    "hw_status": null
+  },
+  "location": {
+    "pos_status": null,
+    "latlong": [40.0, -70.0],
+    "speed": null,
+    "pos_uncertainty": 30,
+    "_id": "00000000000000000000000",
+    "_type": "device_pos_report",
+    "_version": "00000000000000000000000",
+    "altitude": 3,
+    "report_id": "00000000000000000000000",
+    "sensor_used": "KNOWN_WIFI",
+    "nearby_user_id": null,
+    "power_saving_zone_id": "00000000000000000000000"
+  },
+  "petHealth": {
+    "petId": "00000000000000000000000",
+    "activity": {
+      "minutesActive": 44,
+      "minutesGoal": 140
+    },
+    "rest": null,
+    "sleep": {
+      "minutesDaySleep": 0,
+      "minutesNightSleep": 0,
+      "minutesCalm": 3
+    },
+    "bark": {
+      "status": "NORMAL",
+      "dayOffset": -1
+    },
+    "restingHeartRate": {
+      "status": "NOT_ENOUGH_DATA_TODAY",
+      "dayOffset": 0
+    },
+    "restingRespiratoryRate": {
+      "status": "NORMAL",
+      "dayOffset": -1
+    },
+    "scratch": {
+      "status": "INFREQUENT",
+      "dayOffset": -1
+    },
+    "healthAlerts": {
+      "unseenCount": 0
+    },
+    "associatedData": [
+      {
+        "type": "WEEKLY_REPORT"
+      },
+      {
+        "type": "HEALTH_WEEKLY_REPORT"
+      }
+    ]
+  },
+  "trackerHistory": [
+    {
+      "latlong": [40.0, -70.0],
+      "pos_uncertainty": 25,
+      "_type": "device_pos_report",
+      "altitude": 5,
+      "sensor_used": "GPS"
+    },
+    {
+      "latlong": [40.0, -70.0],
+      "pos_uncertainty": 30,
+      "_type": "device_pos_report",
+      "altitude": 3,
+      "sensor_used": "KNOWN_WIFI"
+    },
+    {
+      "latlong": [40.0, -70.0],
+      "pos_uncertainty": 28,
+      "_type": "device_pos_report",
+      "altitude": 4,
+      "sensor_used": "GPS"
+    }
+  ],
+  "command": {
+    "status": "success",
+    "message": "Command executed successfully",
+    "id": "00000000000000000000000",
+    "execution_time": 1250
+  }
+}

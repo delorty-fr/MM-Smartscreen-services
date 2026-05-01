@@ -4,6 +4,9 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { ValidationPipe } from '@nestjs/common';
 import * as fs from 'fs';
 import { AuthService } from './modules/auth/auth.service';
+import { StubModeService } from './config/stub-mode.service';
+import { StubDataProvider } from './config/stub-data-provider';
+import { StubModeInterceptor } from './interceptors/stub-mode.interceptor';
 
 const swaggerDescription = `
 Tractive is a company that specializes in GPS tracking devices for pets, primarily dogs and cats. These devices allow
@@ -26,16 +29,27 @@ async function bootstrap() {
   // class-validation @see https://www.npmjs.com/package/class-validator
   app.useGlobalPipes(new ValidationPipe());
 
-  // Authenticate before starting the server
+  // Register stub mode interceptor
+  const stubModeService = app.get(StubModeService);
+  const stubDataProvider = app.get(StubDataProvider);
+  app.useGlobalInterceptors(
+    new StubModeInterceptor(stubModeService, stubDataProvider),
+  );
+
+  // Authenticate before starting the server (skip if stub mode is enabled)
   const authService = app.get(AuthService);
-  try {
-    console.log('Authenticating with Tractive API...');
-    await authService.authenticate();
-    console.log('✓ Authentication successful');
-  } catch (error: any) {
-    console.error('✗ Authentication failed:', error?.message);
-    await app.close();
-    process.exit(1);
+  if (!stubModeService.isStubModeEnabled()) {
+    try {
+      console.log('Authenticating with Tractive API...');
+      await authService.authenticate();
+      console.log('✓ Authentication successful');
+    } catch (error: any) {
+      console.error('✗ Authentication failed:', error?.message);
+      await app.close();
+      process.exit(1);
+    }
+  } else {
+    console.log('⚠️  STUB MODE ENABLED - Skipping authentication');
   }
 
   // swagger-api @see https://docs.nestjs.com/openapi/introduction

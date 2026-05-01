@@ -41,6 +41,8 @@ export class PetService {
         },
       });
 
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
+
       // Enhance with profile and cover picture links
       if (
         response.data.details &&
@@ -80,6 +82,7 @@ export class PetService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e: any) {
       this.logger.error(`Error while getting pets: ${e?.message}`);
@@ -107,6 +110,7 @@ export class PetService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e: any) {
       this.logger.error(`Error while getting pet health: ${e?.message}`);

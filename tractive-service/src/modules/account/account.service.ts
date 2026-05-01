@@ -39,6 +39,7 @@ export class AccountService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e) {
       this.logger.error(`Error while getting account info: ${e.message}`);
@@ -67,6 +68,7 @@ export class AccountService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e) {
       this.logger.error(`Error while getting account subscriptions: ${e.message}`);
@@ -96,6 +98,7 @@ export class AccountService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e) {
       this.logger.error(`Error while getting subscription: ${e.message}`);
@@ -124,6 +127,7 @@ export class AccountService {
           Authorization: `Bearer ${bearer}`,
         },
       });
+      console.log('[TRACTIVE API RESPONSE] GET', url, response.data);
       return response.data;
     } catch (e) {
       this.logger.error(`Error while getting account shares: ${e.message}`);
