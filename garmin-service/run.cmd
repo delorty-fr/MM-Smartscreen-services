@@ -5,20 +5,43 @@ REM Get the directory where this script is located
 set mypath=%~dp0
 cd /d "%mypath:~0,-1%"
 
-REM Activate virtual environment
-if exist venv\Scripts\activate.bat (
-    call venv\Scripts\activate.bat
-) else (
-    echo Virtual environment not found. Creating it...
+echo Current directory: %cd%
+
+REM Create virtual environment if it doesn't exist
+if not exist venv (
+    echo Creating virtual environment...
     python -m venv venv
-    call venv\Scripts\activate.bat
-    echo Installing dependencies...
-    pip install -e .
+    if errorlevel 1 (
+        echo Error creating virtual environment
+        pause
+        exit /b 1
+    )
 )
 
-REM Install/update dependencies
-pip install -e . --quiet
+REM Activate virtual environment
+call venv\Scripts\activate.bat
+if errorlevel 1 (
+    echo Error activating virtual environment
+    pause
+    exit /b 1
+)
+
+echo Installing dependencies...
+pip install --upgrade pip
+pip install -e .
+pip install uvicorn[standard]
+
+if errorlevel 1 (
+    echo Error installing dependencies
+    pause
+    exit /b 1
+)
 
 REM Start the FastAPI server
+echo.
 echo Starting Garmin Service...
-uvicorn garmin_service.main:app --host 127.0.0.1 --port 8000 --reload
+echo Access API docs at: http://127.0.0.1:8000/docs
+echo.
+python -m uvicorn garmin_service.main:app --host 127.0.0.1 --port 8000 --reload
+
+pause
