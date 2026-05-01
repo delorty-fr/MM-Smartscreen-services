@@ -13,7 +13,7 @@ A FastAPI REST service for retrieving daily step data from Garmin Connect.
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.12+
 - FastAPI
 - Uvicorn
 - python-garminconnect
