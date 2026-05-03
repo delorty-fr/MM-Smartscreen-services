@@ -79,6 +79,10 @@ class GarminAuthManager:
             self.garmin_client = Garmin()
             self.garmin_client.login(str(self.token_storage_path))
             logger.info("✅ Successfully logged in using stored tokens")
+            
+            # Initialize display_name to prevent "Display name is not set" errors
+            self._initialize_display_name()
+            
             self._update_refresh_time()
             return self.garmin_client
 
@@ -145,6 +149,10 @@ class GarminAuthManager:
                 self.token_storage_path.parent.mkdir(parents=True, exist_ok=True)
                 self.garmin_client.client.dump(str(self.token_storage_path))
                 logger.info(f"✅ Login successful! Tokens saved to: {self.token_storage_path}")
+                
+                # Initialize display_name to prevent "Display name is not set" errors
+                self._initialize_display_name()
+                
                 self._update_refresh_time()
 
                 return self.garmin_client
@@ -189,21 +197,8 @@ class GarminAuthManager:
             # Save refreshed tokens to disk
             self.garmin_client.client.dump(str(self.token_storage_path))
             
-            # Re-fetch profile to ensure display_name is set
-            # This prevents "Display name is not set" errors after token refresh
-            try:
-                prof = self.garmin_client.client.connectapi(
-                    "/userprofile-service/socialProfile"
-                )
-                if isinstance(prof, dict):
-                    self.garmin_client.display_name = prof.get(
-                        "displayName", self.garmin_client.username
-                    )
-                    logger.debug(
-                        f"Profile refreshed: display_name = {self.garmin_client.display_name}"
-                    )
-            except Exception as e:
-                logger.warning(f"Could not refresh profile after token refresh: {e}")
+            # Re-initialize display_name to ensure it's properly set after token refresh
+            self._initialize_display_name()
             
             self._update_refresh_time()
             logger.info("✅ Tokens refreshed successfully")
@@ -237,6 +232,47 @@ class GarminAuthManager:
         logger.debug(
             f"Refresh time updated. Next refresh expected at: {self.next_expected_refresh.isoformat()}"
         )
+
+    def _initialize_display_name(self) -> None:
+        """Fetch and set the display_name on the Garmin client.
+        
+        The Garmin API requires display_name to be set. This fetches it from the
+        user profile and ensures it's available for subsequent API calls.
+        
+        Raises:
+            GarminConnectConnectionError: If unable to fetch user profile
+        """
+        if not self.garmin_client:
+            logger.warning("Cannot initialize display_name: client not authenticated")
+            return
+        
+        try:
+            # Fetch the user's social profile
+            prof = self.garmin_client.client.connectapi(
+                "/userprofile-service/socialProfile"
+            )
+            
+            if isinstance(prof, dict):
+                display_name = prof.get("displayName")
+                if display_name:
+                    self.garmin_client.display_name = display_name
+                    logger.info(f"✅ Display name initialized: {display_name}")
+                else:
+                    # Fallback to username if displayName is not available
+                    fallback_name = prof.get("username") or self.garmin_client.username
+                    self.garmin_client.display_name = fallback_name
+                    logger.warning(
+                        f"⚠️  No displayName in profile, using fallback: {fallback_name}"
+                    )
+            else:
+                logger.warning("Unexpected profile response format, skipping display_name initialization")
+                
+        except Exception as e:
+            logger.warning(f"Could not initialize display_name from profile: {e}")
+            # Fallback to username if profile fetch fails
+            if hasattr(self.garmin_client, 'username'):
+                self.garmin_client.display_name = self.garmin_client.username
+                logger.info(f"Using username as fallback display_name: {self.garmin_client.username}")
 
     def get_client(self) -> Garmin:
         """Get the authenticated Garmin client.
